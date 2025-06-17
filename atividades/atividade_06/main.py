@@ -1,49 +1,57 @@
 import os
 
 usuario = {}
-
 while True:
-    print('''           MENU
-            1 - Cadastar um nome em uma lista
-            2 - Exibir lista de nomes
-            3 - Alterar um nome na lista
-            4 - Excluir um nome na lista
-            5 - Sair do programa''')
+    print("1 - Cadastrar nova chave")
+    print("2 - Exibir dados do usuário")
+    print("3 - Alterar valor da chave")
+    print("4 - Excluir chave")
+    print("5 - Sair do programa")
+    menu = input("Informe a opção desejada: ")
 
-    menu = input('Escolha a opção:').strip()
-    os.system('cls')
-
+    os.system("clear") # No windows, cls
     match menu:
         case "1":
-            try:
-                dado = input('Informe o dado que deseja inserir: ')
-                usuario[dado] = input('Informe o valor da chave: ')
-                os.system('cls')
-                print('Dado cadastrado !')
-            except Exception as e:
-                print(f'Não foi possível cadastrar o dado {e}')
-            finally:
-                continue
-        
-        case "2":
-                for dado in usuario:
-                    print(f"{dado.capitalize()}: {usuario.get(dado)}")
-                continue
+            chave = input("Informe a chave que deseja inserir:").lower().strip()
+            usuario[chave] = input("Informe o valor da chave: ")
 
+            os.system("clear") # No windows, cls
+            print("Chave cadastrada com sucesso!")
+            continue
+
+        case "2":
+            for chave in usuario: 
+                print(f"{chave.capitalize()}: {usuario.get(chave)}.") 
+
+            print("\n")
+            continue
         case "3":
-              for dado in range(len(usuario)):
-                   print(f'Posição:{dado} {usuario['nome']}')
-              try:
-                   dado = int(input('Informe o número da posição a ser alterada:'))
-                   if dado >= 0 and dado < len(usuario):
-                        print(f'Nome encontrado {usuario[dado]}')
-                        usuario[dado] = input('Informe o nome da nova pessoa: ')
-                        print('Nome alterado com sucesso\n')
-                   else:
-                        print('Valor da posição errada')
-              except Exception as e:
-                   print(f'Não foi possível alterar {e}')
-              finally:
-                    print('\nNovos nomes:\n')
-                    for dado in range(len(usuario)):
-                        print(f'{usuario['nome']}')
+            chave = input("Informe a chave que deseja alterar: ").lower().strip()
+
+            if chave in usuario:
+                usuario[chave] = input("Informe o valor da chave: ")
+                os.system("clear") # No windows, cls
+                print("Valor da chave alterado com sucesso!")
+            else:
+                os.system("clear") # No windows, cls
+                print("Chave não encontrada.")
+            
+            continue
+        case "4":
+            chave = input("Informe a chave que deseja excluir: ").lower().strip()
+            confirmacao = input(f"Tem certeza de que deseja excluir {chave}? (s/n)").lower().strip()
+            os.system("clear") # No windows, cls
+            
+            if confirmacao is "s":
+                del usuario[chave]
+                print("Chave excluída com sucesso!")
+            else:
+                print("Chave não foi excluída.")
+            
+            continue
+        case "5":
+            print("Programa encerrado.")
+            break
+        case _:
+            print("Opção inválida.")
+            continue
