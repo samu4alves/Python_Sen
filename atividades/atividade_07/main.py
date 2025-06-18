@@ -18,7 +18,7 @@ while True:
             for pessoa in pessoas:
                 print(f"{'-'*40}")
                 for chave in chaves:
-                    print(f"{chave.capitalize()}: {pessoa.get(chave)}")
+                    print(f"{chave.capitalize()}: CPF:{pessoa.get(chave)}")
                 print(f"{'-'*40}")
 
         case "3":
@@ -46,7 +46,8 @@ while True:
 
         case "4":
             for i, pessoa in enumerate(pessoas):
-                print(f"{i}: {pessoa.get('nome')}")
+                print(f"{i}: {pessoa.get('nome')} \n {pessoa.get('CPF')}")
+                print(f'{'-'*30}')
 
             try:
 
