@@ -1,4 +1,4 @@
-chaves = ('nome', 'data de nascimento', 'email', 'CPF', 'telefone', 'profissao', 'genero')
+chaves = ('nome', 'idade', 'email', 'CPF', 'telefone', 'profissao', 'genero')
 
 pessoas = []
 
@@ -40,15 +40,28 @@ while True:
                     print("Índice fora do intervalo.")
             except Exception as e:
                 print(f"Você precisa digitar um número válido para o índice. {e}")
+            
+            finally:
+                continue
 
         case "4":
             for i, pessoa in enumerate(pessoas):
                 print(f"{i}: {pessoa.get('nome')}")
 
-            delete = int(input("Digite o dicionario que deseja deletar"))
-            if delete in range(len(pessoas)):
-                del pessoas[delete]
-                print("Pessoa deletada com sucesso")
+            try:
+
+                delete = int(input("Digite o índice do dicionario que deseja deletar"))
+                if delete in range(len(pessoas)):
+                    del pessoas[delete]
+                    print("Pessoa deletada com sucesso")
+                else:
+                    print('Indice não encontrado')
+            
+            except Exception as e:
+                print(f'Apenas números {e}')
+            
+            finally:
+                continue
         
         case "5":
             break
