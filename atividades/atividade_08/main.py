@@ -1,60 +1,64 @@
-'''
-#todo - atividade crie um programa onde o usuario possa escolher as seguintes operações:
--calcular área de um quadrado
--calcular área de um retângulo
--calcular área de um triângulo
--calcular área de um trapézio
--sair do programa
-#note - o usuario deverá escolher a operação em um menu
-#note - o programa deverá ser feito com funções
-'''
-
-import math as m
 import os
 
-def calcular_quadrado():
-    return f'{m.sqrt}'
+def calcular_quadrado(lado):
+    return lado ** 2
 
 def calcular_retangulo(largura, altura):
     return largura * altura
 
-def calcular_triangulo(a, b, c):
-    s = (a + b + c) / 2
-    area = m.sqrt(s * (s - a) * (s - b) * (s - c))
-    return area
+def calcular_triangulo(base, altura):
+    return (base * altura ) / 2
 
 def calcular_trapezio(base_maior, base_menor, altura):
     return ((base_maior + base_menor) * altura) / 2
 
-while True:
+while True:    
     print('''1- Calcular área de um quadrado
 2- Calcular área de um retângulo
 3- Calcular área de um triângulo
 4- Calcular área de um trapézio
 5- Sair do programa''')
     
-    menu = int(input('Escolha a opção: '))
+    menu = input('Escolha a opção: ').strip()
+    os.system('cls' if os.name == 'nt' else 'clear')    
     try: 
-        if menu == int:
-            match menu:
-                case "1": # raiz quadrada
-                    quadrado = int(input('Digite um número: '))
-                    print(f'Raiz quadrada: {calcular_quadrado()}')
-                    continue
+        match menu:
+            case "1": # Área do quadrado
+                lado_quadrado = float(input('Digite um número: '))
+                print(f'Área do quadrado: {calcular_quadrado(lado_quadrado)}\n')
+                continue
 
-                case "2": # retângulo
-                    largura = int(input('Digite um número: '))
-                    altura = int(input('Digite um número: '))
-                    print(f'Retângulo: {calcular_retangulo}')
+            case "2": # Área do retângulo
+                largura = float(input('Digite um número: '))
+                altura = float(input('Segundo número: '))
+                print(f'Área do retângulo: {calcular_retangulo(largura, altura)}\n')
+                continue
                 
-                case "3": # triângulo
-                    a = int(input('Primeiro número'))
-                    b = int(input('Segundo número'))
-                    c = int(input('Terceiro número'))
-                    print(f'Triângulo: {calcular_triangulo}')
+            case "3": # Área do triângulo
+                base = float(input('Primeiro número: '))
+                altura = float(input('Segundo número: '))
+                print(f'Área do triângulo: {calcular_triangulo(base, altura)}\n')
+                continue
                 
-                case "4": # trapézio
-                    trapezio
+            case "4": # Área do trapézio
+                base_maior = float(input('Primeiro número: '))
+                base_menor = float(input('Segundo número: '))
+                altura = float(input('Terceiro número: '))
+                print(f'Área do trapézio: {calcular_trapezio(base_maior, base_menor, altura)}\n')
+                continue
+                
+            case "5": # saida ou não
+                parada = input('Deseja sair do programa? (s/n):').strip().lower()
+                if parada == 's':
+                    print('Programa encerrado')
+                    break
+                else:
+                    continue
+                
+            case _:
+                print('Opção inválida')
+    
     except Exception as e:
-        print(f'Não foi possível executar a operção {e}')
+        print(f'Não foi possível executar a operação {e}')
+        retorno = input('Pressione enter para continuar...')
         continue
