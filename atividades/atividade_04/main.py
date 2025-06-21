@@ -1,7 +1,7 @@
 import os # módulo para interagir com o sistema operacional
 
 nomes = []
-while True: # Enquanto for verdadeiro, repita isso
+while True:
     print('''           MENU
             1 - Inserir um nome em uma lista
             2 - Exibir lista de nomes
@@ -9,47 +9,44 @@ while True: # Enquanto for verdadeiro, repita isso
             4 - Alterar um nome na lista
             5 - Excluir um nome na lista
             6 - Sair do programa''')
-    central =  input('Escolha a opção:').strip() # Strip remove espaços indesejado
+    central =  input('Escolha a opção:').strip()
 
-    os.system("clear") # limpa visualmente a tela no terminal
-#                       (Clear, para Linux. Cls, para Windows)
+    os.system("clear")
     
-    match central: # math, Verifica o valor da variável, como se fosse um gerenciador
+    match central:
         case '1':
-                nome_inserido = input('Insira um nome:').lower().strip() # .lower, fica tudo em minúsculo
-                nomes.append(nome_inserido) # append, adiciona o dado do nome_inserido na lista nomes
+                nome_inserido = input('Insira um nome:').lower().strip() 
+                nomes.append(nome_inserido) 
                 print('Nome inserido com sucesso')
 
-        case '2': # Case, se o valor for tal, então execute esses comandos
-            try: # Tentar isso, experimente fazer isso
-                for nome_inserido in nomes: # Para cada nome_inserido, que estiver dentro de nomes
+        case '2': 
+            try: 
+                for nome_inserido in nomes:
                     print(nome_inserido)
-            except Exception as e: # AS E, Pega a exceção dê o nome de "e" para eu usá-la como variável 
-                 print(f'Não foi possível exibir a lista. {e}') # "e" vai ser o erro exibido na tela
+            except Exception as e: 
+                 print(f'Não foi possível exibir a lista. {e}')
             finally:
                  continue
 
         case '3':
                 nome_pesquisado = input('Informe o nome a ser pesquisado:').strip().lower()
                 os.system("clear")
-                if nome_pesquisado in nomes: # if = Se. Se nome_pesquisado estiver dentro de nomes
+                if nome_pesquisado in nomes:
                     print(f'{nome_pesquisado} pessoa encontrada')
-                else: # else = Senão
+                else:
                     print(f'{nome_pesquisado} pessoa não encontrada')
-                result = nomes.count(nome_pesquisado) # count, conte quantas vezes nome_pesquisado aparece
+                result = nomes.count(nome_pesquisado)
                 print(f'{nome_pesquisado} foi encontrado {result} vezes')
                 continue
 # exibe a lista de posições dos nomes para fazer a alteração
         case '4':
-                for nome_inserido in range(len(nomes)): # Range, intervalo. Len, leia.
-# Para cada(for) nome_inserido dentro de um intervalo, leia(len) a lista nomes
+                for nome_inserido in range(len(nomes)):
                     print(f'Posição {nome_inserido}: {nomes[nome_inserido]}')
 # usuário informa a posição do nome que deseja alterar
                 try:
                     posicao_nome = int(input('Informe o número do posição a ser alterado: '))
                     os.system("clear")
                     if posicao_nome >= 0 and posicao_nome < len(nomes):
-# Se posicao_nome for maior ou igual a 0 e também menor, leia a lista nomes
                         print(f'Nome encontrado {nomes[posicao_nome]}')
                         nomes[posicao_nome] = input('Informe o nome da nova pessoa: ')
                         os.system("clear")
@@ -69,7 +66,7 @@ while True: # Enquanto for verdadeiro, repita isso
 # usuário informa a posição do nome que deseja excluir
                 try:
                     exclusao_nome = int(input("Informe a posição que deseja excluir: "))
-                    os.system("clear") # limpa visualmente a tela no terminal
+                    os.system("clear")
                     if exclusao_nome >= 0 and exclusao_nome < len(nomes):
                         print(f"Nome a ser excluído: {nomes[exclusao_nome]}")
                         confirma = input(f"Deseja excluir {nomes[exclusao_nome]}? (s/n)").lower().strip()
